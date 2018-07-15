@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h2> Welcome to InfoTrack Google Search</h2>
+    <p class="lead">This tool returns where the entered URL is displayed on Google search (regardless of paid ads), based on typed keywords.</p>
+  </div>
+  <div class="row">
+    <div class="col-md-12 order-md-1">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="keywords">Keywords</label>
+            <input type="text" class="form-control" id="keywords" name="keywords" [(ngModel)]="model.keywords" #keywords="ngModel" [ngClass]="{ 'is-invalid': f.submitted && keywords.invalid }" required />
+            <div *ngIf="f.submitted && keywords.invalid" class="invalid-feedback">
+              <div *ngIf="keywords.errors.required">keywords is required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="url">URL</label>
+            <input type="text" class="form-control" id="url" name="url" [(ngModel)]="model.url" #url="ngModel" [ngClass]="{ 'is-invalid': f.submitted && url.invalid }" required />
+            <div *ngIf="f.submitted && url.invalid" class="invalid-feedback">
+              <div *ngIf="url.errors.required">Url is required</div>
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+
+        <div class="col-md-12 text-center">
+          <button class="btn btn-primary btn-lg" type="submit">Search</button>
+        </div>
+
+        <div class="col-md-12" *ngIf="result">
+          <span>Result:&nbsp;</span>
+          <span>{{result}}</span>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2018 Mark Hinkel</p>
+  </footer>
+</div>
